@@ -37,7 +37,7 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper # mapper 文件路径
-  # type-aliases-package: club.yuit.boot.entity
+  type-aliases-package: com.isearch.oauth2.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
