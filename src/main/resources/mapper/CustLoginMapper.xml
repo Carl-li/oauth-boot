@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.isearch.oauth2.mapper.CustLoginMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.isearch.oauth2.model.CustLogin" id="custLoginMap">
+        <result property="custNo" column="CUST_NO"/>
+        <result property="custName" column="CUST_NAME"/>
+        <result property="custMail" column="CUST_MAIL"/>
+        <result property="custPhone" column="CUST_PHONE"/>
+        <result property="custPassword" column="CUST_PASSWORD"/>
+        <result property="dingId" column="DING_ID"/>
+        <result property="wechatId" column="WECHAT_ID"/>
+        <result property="stuToken" column="STU_TOKEN"/>
+        <result property="stuTokenExpiration" column="STU_TOKEN_EXPIRATION"/>
+        <result property="saasToken" column="SAAS_TOKEN"/>
+        <result property="saasTokenExpiration" column="SAAS_TOKEN_EXPIRATION"/>
+        <result property="stuOrderDate" column="STU_ORDER_DATE"/>
+    </resultMap>
+    <select id="findByUserName" resultMap="custLoginMap">
+        select * from  t_cust_login where CUST_MAIL = #{username} or CUST_PHONE =#{username}
+    </select>
+
+
+</mapper>

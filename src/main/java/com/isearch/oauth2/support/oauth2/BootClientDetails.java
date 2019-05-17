@@ -1,8 +1,7 @@
 package com.isearch.oauth2.support.oauth2;
 
-import com.isearch.oauth2.entity.Client;
+import com.isearch.oauth2.model.OauthClient;
 import com.isearch.oauth2.utils.CommonUtils;
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -14,16 +13,13 @@ import java.util.Set;
 /**
  * @author yuit
  * @date 2018/10/16  15:36
- *
  **/
-@Data
-@SuppressWarnings("unchecked")
 public final class BootClientDetails implements ClientDetails {
 
-    private Client client;
+    private OauthClient client;
     private Set<String> scope;
 
-    public BootClientDetails(Client client) {
+    public BootClientDetails(OauthClient client) {
         this.client = client;
     }
 
@@ -37,13 +33,13 @@ public final class BootClientDetails implements ClientDetails {
 
     @Override
     public Set<String> getResourceIds() {
-        return client.getResourceIds()!=null?
-                CommonUtils.transformStringToSet(client.getResourceIds(),String.class):null;
+        return client.getResourceIds() != null ?
+                CommonUtils.transformStringToSet(client.getResourceIds(), String.class) : null;
     }
 
     @Override
     public boolean isSecretRequired() {
-        return client.getIsSecretRequired();
+        return client.getIsSecretRequired() == 1;
     }
 
     @Override
@@ -53,35 +49,35 @@ public final class BootClientDetails implements ClientDetails {
 
     @Override
     public boolean isScoped() {
-        return client.getIsScoped();
+        return client.getIsScoped() == 1;
     }
 
     @Override
     public Set<String> getScope() {
 
-        this.scope = client.getScope()!=null?
-                CommonUtils.transformStringToSet(client.getScope(),String.class):null;
+        this.scope = client.getScope() != null ?
+                CommonUtils.transformStringToSet(client.getScope(), String.class) : null;
 
-        return client.getScope()!=null?
-                CommonUtils.transformStringToSet(client.getScope(),String.class):null;
+        return client.getScope() != null ?
+                CommonUtils.transformStringToSet(client.getScope(), String.class) : null;
     }
 
     @Override
     public Set<String> getAuthorizedGrantTypes() {
-        return client.getAuthorizedGrantTypes()!=null?
-                CommonUtils.transformStringToSet(client.getAuthorizedGrantTypes(),String.class):null;
+        return client.getAuthorizedgrantTypes() != null ?
+                CommonUtils.transformStringToSet(client.getAuthorizedgrantTypes(), String.class) : null;
     }
 
     @Override
     public Set<String> getRegisteredRedirectUri() {
-        return client.getRegisteredRedirectUri()!=null?
-                CommonUtils.transformStringToSet(client.getRegisteredRedirectUri(),String.class):null;
+        return client.getRegisteredRedirectUri() != null ?
+                CommonUtils.transformStringToSet(client.getRegisteredRedirectUri(), String.class) : null;
     }
 
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
-        return (client.getAuthorities()!=null&&client.getAuthorities().trim().length()>0)?
-                AuthorityUtils.commaSeparatedStringToAuthorityList(client.getAuthorities()):null;
+        return (client.getAuthorities() != null && client.getAuthorities().trim().length() > 0) ?
+                AuthorityUtils.commaSeparatedStringToAuthorityList(client.getAuthorities()) : null;
     }
 
     @Override
@@ -96,8 +92,20 @@ public final class BootClientDetails implements ClientDetails {
 
     @Override
     public boolean isAutoApprove(String scope) {
-       return  this.client.getIsAutoApprove()==null ? false: this
-               .client.getIsAutoApprove();
+        return this.client.getIsAutoapprove() == null ? false : this
+                .client.getIsAutoapprove() == 1;
+    }
+
+    public OauthClient getClient() {
+        return client;
+    }
+
+    public void setClient(OauthClient client) {
+        this.client = client;
+    }
+
+    public void setScope(Set<String> scope) {
+        this.scope = scope;
     }
 
     @Override

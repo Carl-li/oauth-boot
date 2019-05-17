@@ -7,6 +7,8 @@ import com.isearch.oauth2.exception.NotAuthException;
 import com.isearch.oauth2.exception.NotAuthorityException;
 import com.isearch.oauth2.response.BaseResponse;
 import com.isearch.oauth2.response.SimpleResponse;
+import com.sun.media.jfxmedia.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
@@ -38,6 +40,7 @@ import static com.isearch.oauth2.response.HttpResponse.simpleResponse;
  * @date  2018/3/30 20:37
  *
  */
+@Slf4j
 @RestControllerAdvice
 public final class ExceptionAdviceHandler {
 
@@ -150,6 +153,7 @@ public final class ExceptionAdviceHandler {
     @ExceptionHandler(UsernameNotFoundException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public BaseResponse usernameNotFound(UsernameNotFoundException ex){
+        log.error("统一异常处理 ：用户不存在！");
         return baseResponse(400,ex.getMessage());
     }
 

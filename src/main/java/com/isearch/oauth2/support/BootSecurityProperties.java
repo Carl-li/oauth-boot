@@ -17,18 +17,14 @@ import org.springframework.context.annotation.Configuration;
  * 配置
  */
 @Configuration
-@EnableConfigurationProperties
-@ConfigurationProperties(prefix = "boot.oauth")
 @Getter
 @Setter
 public class BootSecurityProperties {
 
-
-
     /**
      * 定义token存储类型
      */
-    private TokenStoreType tokenStoreType = TokenStoreType.memory;
+    private TokenStoreType tokenStoreType = TokenStoreType.redis;
 
     private String loginProcessUrl="/auth/authorize";
     private String loginPage="/auth/login";
@@ -44,7 +40,7 @@ public class BootSecurityProperties {
     @NestedConfigurationProperty
     private BootSmsCodeProperties sms =  new BootSmsCodeProperties();
 
-    private String tokenSigningKey = "OAUTHBOOT@IUY09&098#UIOKNJJ-YUIT.CLUB";
+    private String tokenSigningKey = "EJWEI123";
 
 
 

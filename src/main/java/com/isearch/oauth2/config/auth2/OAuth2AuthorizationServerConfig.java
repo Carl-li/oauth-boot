@@ -2,7 +2,7 @@ package com.isearch.oauth2.config.auth2;
 
 import com.isearch.oauth2.filter.BootBasicAuthenticationFilter;
 import com.isearch.oauth2.support.BootUserDetailService;
-import com.isearch.oauth2.support.oauth2.BootClientDetailsService;
+import com.isearch.oauth2.support.BootClientDetailsService;
 import com.isearch.oauth2.support.oauth2.BootOAuth2WebResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

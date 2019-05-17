@@ -1,7 +1,8 @@
-package com.isearch.oauth2.support.oauth2;
+package com.isearch.oauth2.support;
 
-import com.isearch.oauth2.entity.Client;
-import com.isearch.oauth2.service.IClientService;
+import com.isearch.oauth2.model.OauthClient;
+import com.isearch.oauth2.support.oauth2.BootClientDetails;
+import com.isearch.oauth2.service.OauthClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
@@ -17,12 +18,12 @@ import org.springframework.stereotype.Component;
 public final class BootClientDetailsService implements ClientDetailsService {
 
     @Autowired
-    private IClientService clientService;
+    private OauthClientService clientService;
 
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
 
-        Client client = this.clientService.findClientByClientId(clientId);
+        OauthClient client = this.clientService.findClientByClientId(clientId);
 
         if(client==null){
             throw new ClientRegistrationException("客户端不存在");

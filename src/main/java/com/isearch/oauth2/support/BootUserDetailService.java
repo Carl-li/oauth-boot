@@ -1,15 +1,14 @@
 package com.isearch.oauth2.support;
 
-import com.isearch.oauth2.entity.User;
-import com.isearch.oauth2.service.IUserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.isearch.oauth2.exception.UsernameNotFoundException;
+import com.isearch.oauth2.mapper.CustLoginMapper;
+import com.isearch.oauth2.model.CustLogin;
+import com.isearch.oauth2.support.oauth2.Oauth2UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,31 +17,24 @@ import java.util.List;
 /**
  * @author yuit
  * @date time 2018/10/11  9:13
- *
  **/
 @Component
 public final class BootUserDetailService implements UserDetailsService {
 
     @Autowired
-    private IUserService userService;
-
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private CustLoginMapper userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user= this.userService.findByUserName(username);
-
-        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
-
-        List <GrantedAuthority>authorities = new ArrayList<>();
-        authorities.add(authority);
-        user.setAuthorities(authorities);
-
-        if(user==null) {
+        CustLogin user = this.userService.findByUserName(username);
+        if (user == null) {
             throw new UsernameNotFoundException("用户名不存在");
         }
-
-        return user;
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(authority);
+        Oauth2UserVO userVO = new Oauth2UserVO(username, user, authorities);
+        return userVO;
     }
 }
