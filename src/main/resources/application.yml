@@ -4,25 +4,8 @@ server:
 spring:
   application:
     name: boot-cli
-  # mysql 配置
-  datasource:
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/i_cas?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-    type: com.alibaba.druid.pool.DruidDataSource
-  #redis 配置
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    password:
-    jedis:
-      pool:
-        max-active: 8 # 连接词最大链接数
-        max-wait: -1 # 连接池最大阻塞等待时间（负数代表没有限制）
-        max-idle: 8 # 连接池最大空闲连接数
-        min-idle: 0 # 连接池最小空闲连接数
-    timeout: 10000 # 链接超时时间 （ms）,连接时间小会导致连接超时
+  profiles:
+    active: dev
   # 模板引擎配置
   thymeleaf:
     prefix: classpath:/views/
@@ -32,8 +15,22 @@ spring:
     throw-exception-if-no-handler-found: true
 
 
-#logging.level.org.springframework.security: DEBUG
-
+#mybatis:
+#  type-aliases-package: com.isearch.oauth2.model
+#  mapper-locations: classpath:/mapper/*.xml # mapper 文件路径
+##通用mapper
+#mapper:
+#  mappers:
+#    - com.isearch.common.base.mapper.BaseMapper
+#  not-empty: false
+#  identity: MYSQL
+##分页插件
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+#
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml # mapper 文件路径

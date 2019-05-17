@@ -24,6 +24,4 @@
     <select id="findClientByClientId" resultMap="oauthClientMap">
         select * from t_oauth_client where CLIENT_ID=#{clientId}
     </select>
-
-
 </mapper>

@@ -21,6 +21,4 @@
     <select id="findByUserName" resultMap="custLoginMap">
         select * from  t_cust_login where CUST_MAIL = #{username} or CUST_PHONE =#{username}
     </select>
-
-
 </mapper>
