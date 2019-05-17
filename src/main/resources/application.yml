@@ -1,23 +1,21 @@
 server:
   port: 8000
-#  servlet:
-#    context-path: /api/v1
 
 spring:
   application:
     name: boot-cli
   # mysql 配置
   datasource:
-    username: dev
-    password: Sys@gzu123+
+    username: root
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://172.16.2.103:3306/boot?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/boot?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     type: com.alibaba.druid.pool.DruidDataSource
   #redis 配置
   redis:
-    host: 172.16.2.104
+    host: 127.0.0.1
     port: 6379
-    password: Sys@redis123+
+    password:
     jedis:
       pool:
         max-active: 8 # 连接词最大链接数
@@ -48,7 +46,7 @@ mybatis-plus:
       db-type: mysql  # 3.0 版本的必须配置 不然无法启动 nested exception is com.baomidou.mybatisplus.core.exceptions.MybatisPlusException: Error: GlobalConfigUtils setMetaData Fail !  Cause:java.lang.NullPointerException
 boot:
   oauth:
-    token-store-type: jwt
+    token-store-type: redis
     token-signing-key: 123123
 
 
