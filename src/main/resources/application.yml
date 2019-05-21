@@ -16,7 +16,7 @@ spring:
 
 
 #mybatis:
-#  type-aliases-package: com.isearch.oauth2.model
+#  type-aliases-package: com.isearch.system.oauth2.model
 #  mapper-locations: classpath:/mapper/*.xml # mapper 文件路径
 ##通用mapper
 #mapper:
@@ -34,7 +34,7 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml # mapper 文件路径
-  type-aliases-package: com.isearch.oauth2.model
+  type-aliases-package: com.isearch.system.oauth2.model
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.isearch.oauth2.mapper.CustLoginMapper">
+<mapper namespace="com.isearch.system.oauth2.mapper.CustLoginMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.isearch.oauth2.model.CustLogin" id="custLoginMap">
+    <resultMap type="com.isearch.system.oauth2.model.CustLogin" id="custLoginMap">
         <result property="custNo" column="CUST_NO"/>
         <result property="custName" column="CUST_NAME"/>
         <result property="custMail" column="CUST_MAIL"/>

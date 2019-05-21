@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.isearch.oauth2.mapper.OauthClientMapper">
+<mapper namespace="com.isearch.system.oauth2.mapper.OauthClientMapper">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.isearch.oauth2.model.OauthClient" id="oauthClientMap">
+    <resultMap type="com.isearch.system.oauth2.model.OauthClient" id="oauthClientMap">
         <result property="id" column="ID"/>
         <result property="clientId" column="CLIENT_ID"/>
         <result property="resourceIds" column="RESOURCE_IDS"/>
